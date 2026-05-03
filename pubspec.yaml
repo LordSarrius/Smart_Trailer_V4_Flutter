@@ -1,9 +1,11 @@
-name: trailer_monitor
-description: Smart Trailer Monitor
+﻿name: trailer_monitor
+description: Smart Trailer Monitor V4
 publish_to: 'none'
-version: 1.0.0+1
+version: 2.0.0+1
+
 environment:
   sdk: '>=3.0.0 <4.0.0'
+
 dependencies:
   flutter:
     sdk: flutter
@@ -11,15 +13,22 @@ dependencies:
   google_fonts: ^6.1.0
   audioplayers: ^6.0.0
   device_preview: ^1.1.0
+  media_kit: ^1.1.11
+  media_kit_video: ^1.2.5
+  media_kit_libs_video: ^1.0.5
+  mqtt_client: ^10.3.0
+  http: ^1.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+
 flutter:
   uses-material-design: true
   assets:
     - assets/audio/beep_slow.wav
-    - assets/audio/beep_warn.wav  
+    - assets/audio/beep_warn.wav
     - assets/audio/beep_medium.wav
     - assets/audio/beep_fast.wav
     - assets/audio/beep_critical.wav
