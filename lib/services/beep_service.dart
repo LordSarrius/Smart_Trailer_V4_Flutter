@@ -24,7 +24,7 @@ class BeepService {
   }
 
   Future<void> update(double distCm) async {
-    final zone = distCm <= 20  ? 'critical'
+    final zone = distCm <= 25  ? 'critical'
            : distCm <= 40  ? 'fast'
            : distCm <= 60  ? 'medium'
            : distCm <= 100 ? 'warn'

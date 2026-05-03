@@ -21,6 +21,18 @@ class _CameraWidgetState extends State<CameraWidget> {
     _player = Player();
     _videoController = VideoController(_player);
 
+    final mpv = _player.platform as NativePlayer;
+    mpv.setProperty('profile', 'low-latency');
+    mpv.setProperty('cache', 'no');
+    mpv.setProperty('cache-pause', 'no');
+    mpv.setProperty('untimed', 'yes');
+    mpv.setProperty('framedrop', 'decoder+vo');
+    mpv.setProperty('video-latency-hacks', 'yes');
+    mpv.setProperty('stream-buffer-size', '4k');
+    mpv.setProperty('demuxer-readahead-secs', '0');
+    mpv.setProperty('demuxer-max-bytes', '500000');
+    mpv.setProperty('interpolation', 'no');
+    
     _player.stream.playing.listen((playing) {
       if (mounted) setState(() { _isConnected = playing; _isLoading = false; });
     });
@@ -45,7 +57,10 @@ class _CameraWidgetState extends State<CameraWidget> {
         if (_isConnected)
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
-            child: Video(controller: _videoController, controls: NoVideoControls),
+            child: Transform.flip(
+              flipX: true,
+              child: Video(controller: _videoController, controls: NoVideoControls),
+            ),
           )
         else
           Center(child: Column(
